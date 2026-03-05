@@ -108,6 +108,13 @@
             transition: transform 0.3s ease;
             z-index: 100;
         }
+
+        @keyframes march {
+            to { stroke-dashoffset: -18; }
+        }
+        .diag-line {
+            animation: march 1.5s linear infinite;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -240,10 +247,117 @@
                     </div>
                 </div>
                 <div class="relative">
-                    <div class="aspect-square glass rounded-3xl flex items-center justify-center overflow-hidden border-2 border-slate-800">
-                        <div class="p-12 text-center">
-                            <div class="text-6xl text-slate-700 mb-6 opacity-20"><i class="fa-solid fa-shield-nodes"></i></div>
-                            <p class="text-sm font-space text-slate-500 italic">Interoperability Diagram Placeholder</p>
+                    <div class="glass rounded-3xl overflow-hidden border border-slate-800 p-6">
+                        <!-- Header -->
+                        <div class="text-center mb-6">
+                            <h3 class="text-base font-bold text-white mb-2 tracking-tight font-space">Inter-Agent Protocol Flow</h3>
+                            <div class="h-0.5 w-14 bg-blue-500 mx-auto rounded-full" style="box-shadow:0 0 12px rgba(59,130,246,0.5)"></div>
+                        </div>
+
+                        <!-- 3-col grid -->
+                        <div class="relative grid grid-cols-3 gap-3 items-center mb-6">
+
+                            <!-- Agent Alpha -->
+                            <div class="relative">
+                                <div class="absolute -inset-0.5 bg-gradient-to-b from-blue-500 to-cyan-500 rounded-xl blur opacity-20"></div>
+                                <div class="relative bg-slate-900 border border-blue-500/30 p-3 rounded-xl">
+                                    <div class="flex flex-col items-center mb-3">
+                                        <div class="p-2 bg-blue-500/10 rounded-full mb-1.5">
+                                            <i class="fa-solid fa-microchip text-blue-400 text-base"></i>
+                                        </div>
+                                        <h4 class="text-xs font-bold text-blue-100">Agent Alpha</h4>
+                                        <span class="text-[8px] text-blue-400/70 font-mono tracking-widest uppercase">Initiator</span>
+                                    </div>
+                                    <div class="space-y-1.5">
+                                        <div class="flex items-center gap-1.5 p-1.5 rounded-lg border border-emerald-500/40 bg-emerald-500/5 text-emerald-300">
+                                            <i class="fa-solid fa-layer-group text-[9px] shrink-0"></i>
+                                            <span class="text-[8px] font-semibold tracking-wide uppercase">MCP Client</span>
+                                        </div>
+                                        <div class="flex items-center gap-1.5 p-1.5 rounded-lg border border-blue-500/40 bg-blue-500/5 text-blue-300">
+                                            <i class="fa-solid fa-share-nodes text-[9px] shrink-0"></i>
+                                            <span class="text-[8px] font-semibold tracking-wide uppercase">A2A Interface</span>
+                                        </div>
+                                        <div class="flex items-center gap-1.5 p-1.5 rounded-lg border border-purple-500/40 bg-purple-500/5 text-purple-300">
+                                            <i class="fa-solid fa-globe text-[9px] shrink-0"></i>
+                                            <span class="text-[8px] font-semibold tracking-wide uppercase">ACP / Virtuals</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Middle: Registry + SVG lines -->
+                            <div class="relative flex items-center justify-center" style="height:160px">
+                                <svg class="absolute inset-0 w-full h-full pointer-events-none">
+                                    <defs>
+                                        <linearGradient id="diag-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.6"/>
+                                            <stop offset="50%" stop-color="#8b5cf6" stop-opacity="0.9"/>
+                                            <stop offset="100%" stop-color="#10b981" stop-opacity="0.6"/>
+                                        </linearGradient>
+                                    </defs>
+                                    <line x1="0%" y1="50%" x2="100%" y2="50%" stroke="url(#diag-grad)" stroke-width="1.5" stroke-dasharray="6,3" class="diag-line"/>
+                                </svg>
+                                <div class="relative z-10">
+                                    <div class="absolute -inset-3 bg-yellow-500/10 rounded-full blur-lg"></div>
+                                    <div class="relative bg-indigo-950 border border-yellow-500/50 p-3 rounded-full flex flex-col items-center" style="box-shadow:0 0 20px rgba(234,179,8,0.2)">
+                                        <i class="fa-solid fa-magnifying-glass text-yellow-400 text-base mb-1"></i>
+                                        <span class="text-[8px] font-bold text-yellow-200 uppercase tracking-tighter text-center leading-tight">Global<br>Registry</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Agent Beta -->
+                            <div class="relative">
+                                <div class="absolute -inset-0.5 bg-gradient-to-b from-emerald-500 to-teal-500 rounded-xl blur opacity-20"></div>
+                                <div class="relative bg-slate-900 border border-emerald-500/30 p-3 rounded-xl">
+                                    <div class="flex flex-col items-center mb-3">
+                                        <div class="p-2 bg-emerald-500/10 rounded-full mb-1.5">
+                                            <i class="fa-solid fa-microchip text-emerald-400 text-base"></i>
+                                        </div>
+                                        <h4 class="text-xs font-bold text-emerald-100">Agent Beta</h4>
+                                        <span class="text-[8px] text-emerald-400/70 font-mono tracking-widest uppercase">Receiver</span>
+                                    </div>
+                                    <div class="space-y-1.5">
+                                        <div class="flex items-center gap-1.5 p-1.5 rounded-lg border border-emerald-500/40 bg-emerald-500/5 text-emerald-300">
+                                            <i class="fa-solid fa-layer-group text-[9px] shrink-0"></i>
+                                            <span class="text-[8px] font-semibold tracking-wide uppercase">MCP Server</span>
+                                        </div>
+                                        <div class="flex items-center gap-1.5 p-1.5 rounded-lg border border-blue-500/40 bg-blue-500/5 text-blue-300">
+                                            <i class="fa-solid fa-share-nodes text-[9px] shrink-0"></i>
+                                            <span class="text-[8px] font-semibold tracking-wide uppercase">A2A Interface</span>
+                                        </div>
+                                        <div class="flex items-center gap-1.5 p-1.5 rounded-lg border border-purple-500/40 bg-purple-500/5 text-purple-300">
+                                            <i class="fa-solid fa-globe text-[9px] shrink-0"></i>
+                                            <span class="text-[8px] font-semibold tracking-wide uppercase">ACP / Virtuals</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Legend -->
+                        <div class="grid grid-cols-3 gap-2">
+                            <div class="bg-slate-800/50 border border-slate-700 p-2.5 rounded-xl">
+                                <div class="flex items-center gap-1.5 mb-1">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-yellow-500 shrink-0" style="box-shadow:0 0 6px rgba(234,179,8,0.7)"></div>
+                                    <span class="text-[8px] font-bold text-slate-300">Discovery (ACP)</span>
+                                </div>
+                                <p class="text-[8px] text-slate-400 leading-relaxed">Beta registers to the mesh. Alpha queries for capabilities.</p>
+                            </div>
+                            <div class="bg-slate-800/50 border border-slate-700 p-2.5 rounded-xl">
+                                <div class="flex items-center gap-1.5 mb-1">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" style="box-shadow:0 0 6px rgba(59,130,246,0.7)"></div>
+                                    <span class="text-[8px] font-bold text-slate-300">Handshake (A2A)</span>
+                                </div>
+                                <p class="text-[8px] text-slate-400 leading-relaxed">Direct peer auth via signed headers and session negotiation.</p>
+                            </div>
+                            <div class="bg-slate-800/50 border border-slate-700 p-2.5 rounded-xl">
+                                <div class="flex items-center gap-1.5 mb-1">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" style="box-shadow:0 0 6px rgba(16,185,129,0.7)"></div>
+                                    <span class="text-[8px] font-bold text-slate-300">Payload (MCP)</span>
+                                </div>
+                                <p class="text-[8px] text-slate-400 leading-relaxed">Context & tools via JSON-RPC. Beta executes and returns.</p>
+                            </div>
                         </div>
                     </div>
                     <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-red-500/10 rounded-full blur-3xl"></div>
