@@ -12,6 +12,10 @@
     {
       "src": "apps/web/favicon.ico",
       "use": "@vercel/static"
+    },
+    {
+      "src": "apps/web/mainvid.mov",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
@@ -19,6 +23,7 @@
     { "src": "/api/discover", "dest": "apps/web/api/discover.js" },
     { "src": "/api/registry", "dest": "apps/web/api/registry.js" },
     { "src": "/favicon.ico", "dest": "apps/web/favicon.ico" },
+    { "src": "/mainvid.mov", "dest": "apps/web/mainvid.mov" },
     { "src": "/(.*)", "dest": "apps/web/index.html" }
   ]
 }
