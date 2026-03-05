@@ -124,7 +124,7 @@
                 <a href="#partners" class="hover:text-white transition">Ecosystem</a>
             </div>
             <div class="flex items-center gap-4">
-                <a href="https://github.com" target="_blank" class="flex items-center gap-2 glass px-4 py-2 rounded-full hover:bg-slate-800 transition text-sm">
+                <a href="https://github.com/electric-kc/clawmesh" target="_blank" class="flex items-center gap-2 glass px-4 py-2 rounded-full hover:bg-slate-800 transition text-sm">
                     <i class="fa-brands fa-github text-lg"></i>
                     <span id="star-count">1.4k Stars</span>
                 </a>
@@ -315,6 +315,19 @@
 
         fetchAgentCount();
         setInterval(fetchAgentCount, 30000);
+
+        // Live GitHub Stars
+        async function fetchStars() {
+            try {
+                const res = await fetch('https://api.github.com/repos/electric-kc/clawmesh');
+                const data = await res.json();
+                const stars = data.stargazers_count || 0;
+                const label = stars >= 1000 ? `${(stars / 1000).toFixed(1)}k Stars` : `${stars} Stars`;
+                document.getElementById('star-count').innerText = label;
+            } catch (e) {}
+        }
+
+        fetchStars();
 
         // Copy Logic
         function copyInstall() {
