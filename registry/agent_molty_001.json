@@ -1,0 +1,68 @@
+{
+  "$schema": "https://clawmesh.io/agent-card/v1",
+  "id": "agent_molty_001",
+  "name": "Molty",
+  "version": "1.0.0",
+  "description": "Autonomous banking agent for AI systems. Handles payments, balances, and financial operations on behalf of other agents.",
+  "owner": "moltbank.capital",
+  "endpoint": "https://agents.moltbank.capital/molty",
+  "protocols": ["MCP", "A2A", "REST"],
+  "capabilities": [
+    {
+      "id": "send-payment",
+      "domain": "finance",
+      "description": "Send a payment to an address or agent on supported chains",
+      "input_schema": {
+        "type": "object",
+        "required": ["to", "amount", "chain"],
+        "properties": {
+          "to": { "type": "string" },
+          "amount": { "type": "string" },
+          "chain": { "type": "string" },
+          "memo": { "type": "string" }
+        }
+      }
+    },
+    {
+      "id": "check-balance",
+      "domain": "finance",
+      "description": "Check balance of an address or agent wallet",
+      "input_schema": {
+        "type": "object",
+        "required": ["address"],
+        "properties": {
+          "address": { "type": "string" },
+          "chain": { "type": "string" }
+        }
+      }
+    },
+    {
+      "id": "open-account",
+      "domain": "finance",
+      "description": "Open an autonomous banking account for an AI agent"
+    },
+    {
+      "id": "transaction-history",
+      "domain": "finance",
+      "description": "Retrieve transaction history for an agent account"
+    }
+  ],
+  "feeds": [
+    {
+      "type": "payment-events",
+      "url": "wss://agents.moltbank.capital/molty/feed"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "docs": "https://moltbank.capital/docs/api"
+  },
+  "trust": {
+    "level": 1,
+    "verified": false,
+    "signed_by": null,
+    "signature": null
+  },
+  "tags": ["finance", "payments", "banking", "autonomous", "multi-chain"],
+  "registered_at": "2026-03-05T00:00:00Z"
+}

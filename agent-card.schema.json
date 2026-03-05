@@ -1,0 +1,97 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://clawmesh.io/agent-card/v1",
+  "title": "ClawMesh Agent Card v1",
+  "description": "Standardized identity and capability manifest for AI agents on the ClawMesh network",
+  "type": "object",
+  "required": ["id", "name", "version", "endpoint", "protocols", "capabilities"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique agent identifier (e.g. agent_molty_001)",
+      "pattern": "^agent_[a-z0-9_]+$"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable agent name"
+    },
+    "version": {
+      "type": "string",
+      "description": "Agent version (semver)",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "description": {
+      "type": "string",
+      "description": "What this agent does"
+    },
+    "owner": {
+      "type": "string",
+      "description": "Domain or wallet address of the agent operator"
+    },
+    "endpoint": {
+      "type": "string",
+      "format": "uri",
+      "description": "Primary agent endpoint URL"
+    },
+    "protocols": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["MCP", "A2A", "ACP", "REST", "JSON-RPC", "WebSocket"]
+      },
+      "minItems": 1,
+      "description": "Communication protocols this agent supports"
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "domain", "description"],
+        "properties": {
+          "id": { "type": "string" },
+          "domain": { "type": "string" },
+          "description": { "type": "string" },
+          "input_schema": { "type": "object" },
+          "output_schema": { "type": "object" }
+        }
+      },
+      "description": "List of capabilities this agent exposes"
+    },
+    "feeds": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "url"],
+        "properties": {
+          "type": { "type": "string" },
+          "url": { "type": "string", "format": "uri" }
+        }
+      },
+      "description": "Real-time event feeds this agent publishes"
+    },
+    "auth": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "enum": ["none", "bearer", "api_key", "oauth2"] },
+        "docs": { "type": "string", "format": "uri" }
+      }
+    },
+    "trust": {
+      "type": "object",
+      "properties": {
+        "level": { "type": "integer", "minimum": 0, "maximum": 4 },
+        "verified": { "type": "boolean" },
+        "signed_by": { "type": "string" },
+        "signature": { "type": "string" }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "registered_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

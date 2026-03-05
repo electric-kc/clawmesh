@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "apps/web/api/**/*.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "apps/web/index.html",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    { "src": "/api/register", "dest": "apps/web/api/register.js" },
+    { "src": "/api/discover", "dest": "apps/web/api/discover.js" },
+    { "src": "/api/registry", "dest": "apps/web/api/registry.js" },
+    { "src": "/(.*)", "dest": "apps/web/index.html" }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "clawmesh",
+  "private": true,
+  "version": "0.1.0",
+  "description": "ClawMesh — The Agentic Nervous System",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "cd apps/web && vercel dev",
+    "cli": "node packages/cli/src/index.js"
+  },
+  "packageManager": "pnpm@8.0.0"
+}
